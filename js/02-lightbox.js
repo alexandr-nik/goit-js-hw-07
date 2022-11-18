@@ -1,4 +1,4 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 // console.log(galleryItems);
@@ -8,7 +8,7 @@ const galleryEl = document.querySelector(".gallery");
 const items = [];
 
 const createElementGallery = function (item) {
-    const itemLi = document.createElement('li')
+  const itemLi = document.createElement("li");
   const itemLink = document.createElement("a");
   const itemImg = document.createElement("img");
   itemImg.classList = "gallery__image";
@@ -28,20 +28,12 @@ galleryItems.forEach((item) => {
 
 galleryEl.append(...items);
 
-let gallery = new SimpleLightbox('.gallery a');
-console.log(gallery);
+let gallery = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionDelay: 250,  
+  captionPosition: 'bottom',
+  captionsData: 'alt',
+});
 
-// gallery.on();
-galleryEl.addEventListener("click", e => {
-    e.preventDefault();
-    console.log(e.target);
-    gallery.on(e.target)})
-// gallery.on('error.simplelightbox', function (e) {
-// 	console.log(e); // Some usefull information
-// });
+gallery.on();
 
-// with jQuery nearly the same
-// let gallery = $('.gallery a').simpleLightbox();
-// gallery.on('show.simplelightbox', function () {
-// 	// Do something…
-// });

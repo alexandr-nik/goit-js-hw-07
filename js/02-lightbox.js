@@ -22,18 +22,19 @@ const createElementGallery = function (item) {
   items.push(itemLi);
 };
 
+
 galleryItems.forEach((item) => {
   createElementGallery(item);
 });
 
 galleryEl.append(...items);
 
-let gallery = new SimpleLightbox(".gallery a", {
+const galleryLightbox = new SimpleLightbox(".gallery .gallery__item", {
   captions: true,
   captionDelay: 250,  
   captionPosition: 'bottom',
   captionsData: 'alt',
 });
 
-gallery.on();
+galleryLightbox.on();
 

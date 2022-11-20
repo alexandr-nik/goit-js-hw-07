@@ -29,13 +29,24 @@ galleryEl.append(...items);
 
 galleryEl.addEventListener("click", (e) => {
   e.preventDefault();
+
   const instance = basicLightbox.create(
-    `<img alt = ${e.target.alt} src = ${e.target.dataset.source}>`
+    `<img alt = ${e.target.alt} src = ${e.target.dataset.source}>`,
+    {
+      onShow: () => {
+        window.addEventListener("keydown", onPressEscape);
+      },
+      onClose: () => {
+        window.removeEventListener("keydown", onPressEscape);
+      },
+    }
   );
+
   instance.show();
-  window.addEventListener("keydown", (pressKey) => {
-    if (pressKey.key === "Escape") {
+
+  function onPressEscape(event) {
+    if (event.key === "Escape") {
       instance.close();
     }
-  });
+  }
 });
